@@ -29,12 +29,14 @@ services:
     build: .
     container_name: whatsapp_obsidian_api
     restart: unless-stopped
-    env_file:
-      - .env
     environment:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-whatsapp}:${POSTGRES_PASSWORD:-change-me}@postgres:5432/${POSTGRES_DB:-whatsapp_obsidian}
+      WEBHOOK_TOKEN: ${WEBHOOK_TOKEN:-change-this-token}
       OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:3b}
       OBSIDIAN_DAILY_DIR: /obsidian/WhatsApp/Daily
+      SUMMARY_TIME: ${SUMMARY_TIME:-23:55}
+      TZ: ${TZ:-America/Sao_Paulo}
     volumes:
       - ${OBSIDIAN_VAULT_PATH:-./obsidian-vault}:/obsidian
     ports:

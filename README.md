@@ -13,7 +13,7 @@ MVP local para receber mensagens do WhatsApp via Evolution API, salvar no Postgr
 
 ## Configuração
 
-1. Copie `.env.example` para `.env`.
+1. Opcionalmente, copie `.env.example` para `.env` para personalizar a execução local.
 2. Troque `WEBHOOK_TOKEN` e `POSTGRES_PASSWORD`.
 3. Ajuste `OBSIDIAN_VAULT_PATH` para o caminho absoluto do seu vault.
 4. Suba a stack:
@@ -31,7 +31,10 @@ docker exec -it whatsapp_obsidian_ollama ollama pull qwen2.5:3b
 ## Portainer
 
 No Portainer, crie uma nova stack usando o conteúdo de `docker-compose.yml`.
-Cadastre as variáveis do `.env` na stack ou envie o arquivo `.env` junto do projeto.
+Cadastre as variáveis de `.env.example` na seção de variáveis da stack. O arquivo
+`.env` não precisa existir no servidor; os valores padrão do Compose permitem que
+a stack seja criada, mas troque pelo menos `WEBHOOK_TOKEN`, `POSTGRES_PASSWORD` e
+`OBSIDIAN_VAULT_PATH` antes de usar em produção.
 
 ## Webhook da Evolution API
 
